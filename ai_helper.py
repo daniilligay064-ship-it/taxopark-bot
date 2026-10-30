@@ -101,7 +101,8 @@ def read_sql(sql):
         return None, "Only SELECT allowed"
     if ";" in q.rstrip(";"):
         return None, "Multiple statements not allowed"
-    cn = sqlite3.connect("file:///C:/taxipark_bot/data/taxopark.db?mode=ro", uri=True, timeout=3)
+   from paths import DB_PATH
+cn = sqlite3.connect(f"file:{DB_PATH}?mode=ro", uri=True, timeout=3)
     try:
         cn.execute("PRAGMA query_only=ON")
         cn.set_authorizer(lambda a, b, c, d, e: sqlite3.SQLITE_DENY if a in WR else sqlite3.SQLITE_OK)
