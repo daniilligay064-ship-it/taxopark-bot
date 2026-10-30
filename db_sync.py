@@ -7,12 +7,7 @@ import sqlite3
 import urllib.request
 
 PUB = "2PACX-1vRasawikvcH-lhgkL2bEOx5U2uHsORPXhMsNaYcxpqFuln8PKkUPcATXUfKNMhsJAjVl4FYS2EaUVjq"
-GIDS = {
-    "Автомобили": "165056063",
-    "Ввод данных": "517194363",
-    "Касса": "1317235815",
-    "Балансы": "628441157",
-}
+
 DB = r"C:\taxipark_bot\data\taxopark.db"
 TEST_DATE = "31.12.2026"
 
@@ -43,13 +38,8 @@ def normalize_plate(s):
 
 
 def fetch(name):
-    gid = GIDS[name]
-    url = "https://docs.google.com/spreadsheets/d/e/" + PUB + "/pub?gid=" + gid + "&single=true&output=csv"
-    resp = urllib.request.urlopen(url, timeout=30)
-    content = resp.read().decode("utf-8-sig")
-    if not content.strip() or "<html" in content[:500].lower():
-        raise ValueError(name + ": bad response")
-    return list(csv.DictReader(io.StringIO(content)))
+    from sheets_helper import read_sheet
+    return read_sheet(name)
 
 
 def sync():
