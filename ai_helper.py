@@ -52,6 +52,8 @@ Rules:
 11. Owner names in DB: 'Александр Борисович', 'Анна', 'Даниил'.
 12. If user asks about 'Данила', 'Данил' or 'Дане', use 'Даниил' in the SQL query.
 13. If user asks about 'Аня', use 'Анна'.
+14. To count CARS for an owner, ALWAYS use: SELECT COUNT(*) FROM cars WHERE owner = 'Имя'
+15. Never count cars using the earnings table.
 
 JOIN: cars.plate = earnings.gos
 """
