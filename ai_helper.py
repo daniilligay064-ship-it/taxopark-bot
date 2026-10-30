@@ -49,6 +49,9 @@ Rules:
 8. Use only tables and columns from the schema.
 9. Return ONLY SQL. No markdown, no comments, no explanation.
 10. If impossible, return exactly: NO_SQL
+11. Owner names in DB: 'Александр Борисович', 'Анна', 'Даниил'.
+12. If user asks about 'Данила', 'Данил' or 'Дане', use 'Даниил' in the SQL query.
+13. If user asks about 'Аня', use 'Анна'.
 
 JOIN: cars.plate = earnings.gos
 """
